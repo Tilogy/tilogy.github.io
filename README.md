@@ -1,29 +1,60 @@
-# Create T3 App
+# Tilozign - Tiffany Sinakhot's Portfolio
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is the personal portfolio website of Tiffany Sinakhot (Tilogy), showcasing her work and professional experience.
 
-## What's next? How do I make an app with this?
+## About
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+Tilozign is a modern, responsive portfolio website built with Next.js and Tailwind CSS. The site features a clean, minimalist design that highlights Tiffany's professional work and skills.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Features
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- Modern, responsive design
+- Built with Next.js and Tailwind CSS
+- Static site generation for optimal performance
+- LinkedIn integration
+- Mobile-friendly layout
 
-## Learn More
+## Getting Started
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+### Development
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+To run the development server:
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+```bash
+yarn dev
+```
 
-## How do I deploy this?
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+### Building for Production
+
+To create a production build:
+
+```bash
+yarn build
+```
+
+This will generate static files in the `out` directory that can be deployed to any static hosting service.
+
+### Deployment
+
+The site is configured for static export, making it easy to deploy to various platforms:
+
+- GitHub Pages
+- Netlify
+- Vercel
+- AWS S3
+- Any other static hosting service
+
+## Technologies Used
+
+- Next.js 15
+- React 19
+- Tailwind CSS
+- TypeScript
+- ESLint
+- Prettier
+
+## Contact
+
+Connect with Tiffany on [LinkedIn](https://www.linkedin.com/in/tiffany-s-ebsx3/)
