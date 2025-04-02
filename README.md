@@ -13,6 +13,9 @@ Tilozign is a modern, responsive portfolio website built with Next.js and Tailwi
 - Static site generation for optimal performance
 - LinkedIn integration
 - Mobile-friendly layout
+- Beautiful UI components with shadcn/ui
+- Dark mode support
+- Accessible design
 
 ## Getting Started
 
@@ -51,6 +54,7 @@ The site is configured for static export, making it easy to deploy to various pl
 - Next.js 15
 - React 19
 - Tailwind CSS
+- shadcn/ui
 - TypeScript
 - ESLint
 - Prettier

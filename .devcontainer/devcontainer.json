@@ -1,7 +1,7 @@
 {
   "name": "Tilozign",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
-  "postCreateCommand": "yarn install",
+  "postCreateCommand": "yarn install && npx --yes shadcn@latest --version",
   "forwardPorts": [3000],
   "customizations": {
     "vscode": {
