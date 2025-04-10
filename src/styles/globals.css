@@ -4,7 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+  --font-sans:
+    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -41,6 +42,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --linear-to-b: linear-gradient(to bottom, #fdfdfd, #8d72ff);
+  --linear-to-t: linear-gradient(to top, #fdfdfd, #8d72ff);
 }
 
 .dark {
@@ -75,6 +78,8 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --linear-to-b: linear-gradient(to bottom, #000000, #0e0c17);
+  --linear-to-t: linear-gradient(to top, #000000, #0e0c17);
 }
 
 @theme inline {

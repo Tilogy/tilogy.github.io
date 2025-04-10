@@ -1,13 +1,13 @@
-import Description from "@/components/Description";
-import FigmaShowcase from "@/components/FigmaShowcase";
-import Hero from "@/components/Hero";
+import About from "@/components/about";
+import Projects from "@/components/projects";
+import Intro from "@/components/intro";
 
 export default function PreviewPage() {
   return (
     <main>
-      <Hero />
-      <Description />
-      <FigmaShowcase />
+      <Intro />
+      <About />
+      <Projects />
     </main>
   );
 }

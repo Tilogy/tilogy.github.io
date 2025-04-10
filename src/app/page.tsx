@@ -1,12 +1,12 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-[#121212] p-5 text-center text-white">
+    <main className="flex min-h-screen flex-col items-center justify-center p-5 text-center">
       <div className="max-w-[800px]">
-        <h1 className="mb-4 text-[3.5rem] text-white">Tilozign</h1>
-        <p className="mb-8 text-[1.5rem] text-gray-400">Coming Soon</p>
+        <h1 className="mb-4 text-[3.5rem]">Tilozign</h1>
+        <p className="mb-8 text-[1.5rem]">Coming Soon</p>
         <a
           href="https://www.linkedin.com/in/tiffany-s-ebsx3/"
-          className="inline-flex items-center gap-2 rounded-md bg-[#0077b5] px-6 py-3 text-white transition-colors hover:bg-[#005582]"
+          className="inline-flex items-center gap-2 rounded-md bg-[#0077b5] px-6 py-3 transition-colors hover:bg-[#005582]"
           target="_blank"
           rel="noopener noreferrer"
         >
