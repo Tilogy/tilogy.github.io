@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ScreenLayout from "@/components/layout/screen-layout";
 
@@ -5,8 +6,8 @@ const About = () => {
   const topLeftContent = <h2>About</h2>;
 
   const mainContent = (
-    <div className="mx-auto max-w-4xl p-8 text-left">
-      <p className="text-xl md:text-3xl">
+    <div className="mx-auto max-w-4xl text-left">
+      <p>
         I&apos;m a UX/UI Designer with over a decade of experience in visual
         design and a passion for creating intuitive, user-centered digital
         experiences. My journey began in graphic design, but my curiosity and

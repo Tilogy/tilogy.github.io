@@ -1,11 +1,14 @@
-import React from "react";
+"use client";
 
+import React from "react";
+import Image from "next/image";
 interface FigmaEmbedProps {
   title: string;
   src: string;
+  imgSrc: string;
 }
 
-const FigmaEmbed: React.FC<FigmaEmbedProps> = ({ title, src }) => {
+const FigmaEmbed: React.FC<FigmaEmbedProps> = ({ title, src, imgSrc }) => {
   return (
     <a
       href={src}
@@ -13,11 +16,9 @@ const FigmaEmbed: React.FC<FigmaEmbedProps> = ({ title, src }) => {
       rel="noopener noreferrer"
       className="group border-border block transition-all"
     >
-      <h3 className="text-card-foreground group-hover:text-primary mb-3 text-center text-xl font-semibold">
-        {title}
-      </h3>
-      <div className="bg-muted text-muted-foreground flex aspect-video w-full items-center justify-center rounded">
-        <span className="text-sm italic">Click to view project</span>
+      <h3 className="text-card-foreground mb-3 text-center">{title}</h3>
+      <div className="relative aspect-video w-[calc(100vw-96px)] lg:w-[calc(40vw-48px)]">
+        <Image src={imgSrc} alt={title} fill={true} className="rounded" />
       </div>
     </a>
   );

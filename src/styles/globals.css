@@ -42,8 +42,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --linear-to-b: linear-gradient(to bottom, #fdfdfd, #8d72ff);
-  --linear-to-t: linear-gradient(to top, #fdfdfd, #8d72ff);
+  --linear-to-b: linear-gradient(to bottom, #fdfdfd, #fdfdfd);
+  --linear-to-t: linear-gradient(to top, #fdfdfd, #fdfdfd);
 }
 
 .dark {
@@ -126,5 +126,17 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@media screen and (max-height: 994px) {
+  body {
+    --screen-layout-height: 994px;
+  }
+}
+
+@media screen and (min-height: 994px) {
+  body {
+    --screen-layout-height: 100vh;
   }
 }

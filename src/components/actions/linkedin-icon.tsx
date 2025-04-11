@@ -1,13 +1,16 @@
+"use client";
+
 import React from "react";
 
 const LinkedInIcon = () => {
   return (
-    <div className="h-9 w-9 cursor-pointer rounded-sm border-2 border-black bg-transparent dark:border-white">
+    <div className="h-7 w-7 cursor-pointer rounded-sm border-2 border-black bg-transparent md:h-9 md:w-9 dark:border-white">
       <a
-        href="https://linkedin.com"
+        href="https://www.linkedin.com/in/tiffany-s-ebsx3/"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-foreground block transition-opacity hover:opacity-80"
+        aria-label="Connect on LinkedIn"
+        className="text-foreground m-[1px] block transition-opacity hover:opacity-80"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
