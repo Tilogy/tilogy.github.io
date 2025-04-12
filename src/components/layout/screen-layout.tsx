@@ -12,6 +12,7 @@ interface ScreenLayoutProps {
   anchorId?: string;
   nextSectionId?: string;
   previousSectionId?: string;
+  lgHeight?: string;
 }
 
 const ScreenLayout: React.FC<ScreenLayoutProps> = ({
@@ -22,11 +23,12 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
   anchorId,
   nextSectionId,
   previousSectionId,
+  lgHeight = "--default-layout-height",
 }) => {
   return (
     <section
       id={anchorId}
-      className={`${background} text-foreground relative flex flex-col justify-between gap-6 lg:h-[var(--screen-layout-height)]`}
+      className={`${background} text-foreground relative flex flex-col justify-between lg:h-[var(${lgHeight})]`}
     >
       <div className="flex w-full flex-row items-start justify-between p-12">
         <div className="text-2xl font-thin md:text-6xl">{topLeft}</div>

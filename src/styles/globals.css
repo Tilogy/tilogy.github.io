@@ -129,14 +129,26 @@
   }
 }
 
-@media screen and (max-height: 994px) {
+@media screen and (max-height: 600px) {
   body {
-    --screen-layout-height: 994px;
+    --default-layout-height: 600px;
   }
 }
 
-@media screen and (min-height: 994px) {
+@media screen and (min-height: 600px) {
   body {
-    --screen-layout-height: 100vh;
+    --default-layout-height: 100vh;
+  }
+}
+
+@media screen and (max-height: 1200px) {
+  body {
+    --projects-layout-height: 1200px;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  body {
+    --projects-layout-height: 100vh;
   }
 }

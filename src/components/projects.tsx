@@ -45,6 +45,7 @@ const Projects = () => {
       anchorId="projects"
       previousSectionId="about"
       background="bg-(image:--linear-to-b)"
+      lgHeight="--projects-layout-height"
     >
       {mainContent}
     </ScreenLayout>
