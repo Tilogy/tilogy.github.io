@@ -28,7 +28,7 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
   return (
     <section
       id={anchorId}
-      className={`${background} text-foreground relative flex flex-col justify-between ${lgHeight}`}
+      className={`${background} text-foreground relative flex snap-start flex-col justify-between ${lgHeight}`}
     >
       <div className="flex w-full flex-row items-start justify-between p-12">
         <div className="text-2xl font-thin md:text-6xl">{topLeft}</div>

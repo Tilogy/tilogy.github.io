@@ -7,7 +7,7 @@ import ThemeProvider from "@/app/theme-provider";
 export const metadata: Metadata = {
   title: "Tilozign",
   description: "Tiffany Sinakhot's Creative Portfolio",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/favicon.svg" }],
 };
 
 const montserrat = Montserrat({
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} scroll-smooth`}
+      className={`${montserrat.variable} snap-y scroll-smooth`}
       suppressHydrationWarning
     >
       <body>
