@@ -2,6 +2,7 @@
 import React from "react";
 import LinkedInIcon from "@/components/actions/linkedin-icon";
 import ThemeToggle from "@/components/actions/theme-toggle";
+import EmailIcon from "@/components/actions/email-icon"; // Import EmailIcon
 import MoveTo from "@/components/actions/move-to";
 
 interface ScreenLayoutProps {
@@ -33,6 +34,7 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
       <div className="flex w-full flex-row items-start justify-between p-12">
         <div className="text-2xl font-thin md:text-6xl">{topLeft}</div>
         <div className="flex items-center gap-x-4">
+          <EmailIcon /> {/* Add EmailIcon to the left of ThemeToggle */}
           <ThemeToggle />
           <LinkedInIcon />
         </div>
