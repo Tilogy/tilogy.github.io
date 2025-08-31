@@ -1,4 +1,4 @@
-const CACHE_NAME = "lunch-code-v14";
+const CACHE_NAME = "lunch-code-v16";
 const urlsToCache = [
   "/lunch/",
   "/lunch/index.html",
@@ -45,6 +45,11 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  // Only handle HTTP/HTTPS requests, ignore chrome-extension and other schemes
+  if (!event.request.url.startsWith("http")) {
+    return;
+  }
+
   event.respondWith(
     caches
       .match(event.request)
