@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>Lunch Code</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Lunch Code" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#ffc0cb" />
+
+    <!-- iOS Icons -->
+    <link rel="apple-touch-icon" href="icon-40.png" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Icon for other devices -->
+    <link rel="icon" type="image/png" href="icon-40.png" />
+
+    <style>
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body.theme-girl {
+        background: linear-gradient(
+          135deg,
+          #ffc0cb 0%,
+          #ffb6c1 50%,
+          #ffc0cb 100%
+        );
+        color: #d81b60;
+      }
+
+      body.theme-boy {
+        background: linear-gradient(
+          135deg,
+          #4fc3f7 0%,
+          #29b6f6 50%,
+          #4fc3f7 100%
+        );
+        color: #01579b;
+      }
+
+      .calculator {
+        padding: 2vh;
+        border-radius: 25px;
+        width: calc(100vw - 40px);
+        max-width: 600px;
+        height: calc(90vh - 40px);
+        max-height: 700px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .theme-girl .calculator {
+        background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+        box-shadow: 0 8px 32px rgba(219, 39, 119, 0.2);
+        border: 3px solid #ffb6c1;
+      }
+
+      .theme-boy .calculator {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        box-shadow: 0 8px 32px rgba(33, 150, 243, 0.2);
+        border: 3px solid #64b5f6;
+      }
+
+      .calculator::before {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40px;
+      }
+
+      .theme-girl .calculator::before {
+        content: "🦄";
+      }
+
+      .theme-boy .calculator::before {
+        content: "🚚";
+      }
+
+      .display {
+        padding: 1.5vh;
+        border-radius: 13px;
+        margin-bottom: 1.5vh;
+        display: flex;
+        justify-content: center;
+        gap: 1vw;
+        height: 10vh;
+        align-items: center;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+      }
+
+      .theme-girl .display {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+        border: 2px solid #f8bbd0;
+      }
+
+      .theme-boy .display {
+        background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+        border: 2px solid #81d4fa;
+      }
+
+      .digit-box {
+        width: calc(10vw);
+        max-width: 65px;
+        min-width: 40px;
+        height: calc(8vh);
+        max-height: 70px;
+        min-height: 45px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(4.5vh);
+        font-weight: bold;
+        transition: all 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+      }
+
+      .theme-girl .digit-box {
+        border: 2px solid #f8bbd0;
+        color: #d81b60;
+      }
+
+      .theme-boy .digit-box {
+        border: 2px solid #81d4fa;
+        color: #01579b;
+      }
+
+      .digit-box.correct {
+        background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+        border-color: #66bb6a;
+        color: #2e7d32;
+        box-shadow: 0 2px 8px rgba(102, 187, 106, 0.3);
+      }
+
+      .digit-box.incorrect {
+        background: linear-gradient(135deg, #fdeaea 0%, #ffcdd2 100%);
+        border-color: #ef5350;
+        color: #c62828;
+        animation: shake 0.3s;
+        box-shadow: 0 2px 8px rgba(239, 83, 80, 0.3);
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+
+      .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 1.2vh;
+        margin-bottom: 0;
+        flex: 1;
+        max-height: 42vh;
+      }
+
+      .key {
+        border-radius: 13px;
+        padding: 0;
+        font-size: calc(5vh);
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.1s;
+        -webkit-tap-highlight-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(6vh);
+      }
+
+      .theme-girl .key {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+        border: 2px solid #f48fb1;
+        color: #ad1457;
+        box-shadow: 0 4px 8px rgba(244, 143, 177, 0.3);
+      }
+
+      .theme-boy .key {
+        background: linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%);
+        border: 2px solid #42a5f5;
+        color: #0d47a1;
+        box-shadow: 0 4px 8px rgba(66, 165, 245, 0.3);
+      }
+
+      .key:active {
+        transform: scale(0.95);
+      }
+
+      .theme-girl .key:active {
+        background: linear-gradient(135deg, #f8bbd0 0%, #f48fb1 100%);
+        box-shadow: 0 2px 4px rgba(244, 143, 177, 0.5);
+      }
+
+      .theme-boy .key:active {
+        background: linear-gradient(135deg, #90caf9 0%, #42a5f5 100%);
+        box-shadow: 0 2px 4px rgba(66, 165, 245, 0.5);
+      }
+
+      .theme-girl .key:hover {
+        background: linear-gradient(135deg, #f8bbd0 0%, #f48fb1 100%);
+        box-shadow: 0 6px 12px rgba(244, 143, 177, 0.4);
+      }
+
+      .theme-boy .key:hover {
+        background: linear-gradient(135deg, #90caf9 0%, #42a5f5 100%);
+        box-shadow: 0 6px 12px rgba(66, 165, 245, 0.4);
+      }
+
+      .key.enter {
+        position: relative;
+      }
+
+      .theme-girl .key.enter {
+        background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+        border-color: #29b6f6;
+        color: #0277bd;
+      }
+
+      .theme-boy .key.enter {
+        background: linear-gradient(135deg, #c8e6c9 0%, #81c784 100%);
+        border-color: #4caf50;
+        color: #1b5e20;
+      }
+
+      .key.enter::before {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+      }
+
+      .theme-girl .key.enter::before {
+        content: "💖";
+      }
+
+      .theme-boy .key.enter::before {
+        content: "🏁";
+      }
+
+      .enter-row {
+        margin-top: 0.8vh;
+      }
+
+      .enter-row .key.enter {
+        width: 100%;
+      }
+
+      .theme-girl .key.enter:hover {
+        background: linear-gradient(135deg, #b3e5fc 0%, #81d4fa 100%);
+        box-shadow: 0 6px 12px rgba(41, 182, 246, 0.4);
+      }
+
+      .theme-boy .key.enter:hover {
+        background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+        box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
+      }
+
+      .theme-girl .key.enter:active {
+        background: linear-gradient(135deg, #81d4fa 0%, #4fc3f7 100%);
+      }
+
+      .theme-boy .key.enter:active {
+        background: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+      }
+
+      .key.delete {
+        position: relative;
+      }
+
+      .theme-girl .key.delete {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%);
+        border-color: #ffa726;
+        color: #e65100;
+      }
+
+      .theme-boy .key.delete {
+        background: linear-gradient(135deg, #fff9c4 0%, #ffd54f 100%);
+        border-color: #ffc107;
+        color: #f57f17;
+      }
+
+      .key.delete::after {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16px;
+      }
+
+      .theme-girl .key.delete::after {
+        content: "✨";
+      }
+
+      .theme-boy .key.delete::after {
+        content: "⚙️";
+      }
+
+      .theme-girl .key.delete:hover {
+        background: linear-gradient(135deg, #ffcc02 0%, #ff9800 100%);
+        box-shadow: 0 6px 12px rgba(255, 167, 38, 0.4);
+      }
+
+      .theme-boy .key.delete:hover {
+        background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+        box-shadow: 0 6px 12px rgba(255, 193, 7, 0.4);
+      }
+
+      .theme-girl .key.delete:active {
+        background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+      }
+
+      .theme-boy .key.delete:active {
+        background: linear-gradient(135deg, #ffb300 0%, #ff6f00 100%);
+      }
+
+      .unicorn-firework {
+        position: fixed;
+        font-size: 40px;
+        pointer-events: none;
+        z-index: 1000;
+        animation: firework 1s ease-out forwards;
+      }
+
+      @keyframes firework {
+        0% {
+          opacity: 1;
+          transform: scale(0) rotate(0deg);
+        }
+        30% {
+          opacity: 1;
+          transform: scale(2) rotate(180deg);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.2) rotate(720deg);
+        }
+      }
+
+      @media (max-width: 400px) {
+        .calculator {
+          padding: 2vh;
+        }
+
+        .key {
+          font-size: calc(3.5vh);
+          min-height: calc(7vh);
+        }
+
+        .digit-box {
+          font-size: calc(4vh);
+        }
+
+        .key.enter::before {
+          font-size: 16px;
+          right: 8px;
+        }
+
+        .key.delete::after {
+          font-size: 14px;
+          right: 6px;
+        }
+
+        .unicorn-firework {
+          font-size: 30px;
+        }
+      }
+
+      @media (orientation: landscape) and (max-height: 600px) {
+        .calculator {
+          height: calc(100vh - 20px);
+          padding: 2vh;
+        }
+
+        .display {
+          height: 10vh;
+        }
+
+        .keypad {
+          max-height: 40vh;
+        }
+
+        .key {
+          min-height: calc(6vh);
+          font-size: calc(3.5vh);
+        }
+
+        .digit-box {
+          height: calc(8vh);
+          font-size: calc(4vh);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display" id="display">
+        <!-- Digit boxes will be created dynamically -->
+      </div>
+
+      <div class="keypad">
+        <button class="key" onclick="addDigit('7')">7</button>
+        <button class="key" onclick="addDigit('8')">8</button>
+        <button class="key" onclick="addDigit('9')">9</button>
+        <button class="key" onclick="addDigit('4')">4</button>
+        <button class="key" onclick="addDigit('5')">5</button>
+        <button class="key" onclick="addDigit('6')">6</button>
+        <button class="key" onclick="addDigit('1')">1</button>
+        <button class="key" onclick="addDigit('2')">2</button>
+        <button class="key" onclick="addDigit('3')">3</button>
+        <button class="key delete" onclick="clearAll()">C</button>
+        <button class="key" onclick="addDigit('0')">0</button>
+        <button class="key delete" onclick="deleteDigit()">⌫</button>
+      </div>
+
+      <div class="enter-row">
+        <button class="key enter" onclick="checkCode()">Enter</button>
+      </div>
+    </div>
+
+    <script>
+      // Theme detection from URL query string
+      const urlParams = new URLSearchParams(window.location.search);
+      const theme = urlParams.get("theme");
+      let currentTheme = "girl"; // default theme
+
+      if (theme === "2") {
+        currentTheme = "boy";
+      } else if (theme === "1") {
+        currentTheme = "girl";
+      }
+
+      // Apply theme to body
+      document.body.classList.add(`theme-${currentTheme}`);
+
+      // Update meta theme color based on theme
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        metaThemeColor.content = currentTheme === "boy" ? "#29b6f6" : "#ffc0cb";
+      }
+
+      // Get code from query string or use default
+      const codeParam = urlParams.get("code");
+      let correctCode = "1111"; // default code
+
+      if (codeParam && /^\d{1,7}$/.test(codeParam)) {
+        // Accept 1-7 digit codes
+        correctCode = codeParam;
+      }
+
+      const codeLength = correctCode.length;
+      let enteredDigits = [];
+
+      // Create digit boxes dynamically based on code length
+      function createDigitBoxes() {
+        const display = document.getElementById("display");
+        display.innerHTML = "";
+        for (let i = 0; i < codeLength; i++) {
+          const digitBox = document.createElement("div");
+          digitBox.className = "digit-box";
+          digitBox.id = `digit-${i}`;
+          display.appendChild(digitBox);
+        }
+      }
+
+      // Create digit boxes on load
+      createDigitBoxes();
+
+      // Audio objects for sounds
+      let digitAudios = {};
+      let audioContext;
+
+      function initAudio() {
+        if (!audioContext) {
+          audioContext = new (window.AudioContext ||
+            window.webkitAudioContext)();
+        }
+      }
+
+      function playDigitSound(digit) {
+        const digitNames = {
+          0: "zero",
+          1: "one",
+          2: "two",
+          3: "three",
+          4: "four",
+          5: "five",
+          6: "six",
+          7: "seven",
+          8: "eight",
+          9: "nine",
+        };
+
+        const digitName = digitNames[digit];
+        if (!digitName) return;
+
+        if (!digitAudios[digit]) {
+          digitAudios[digit] = new Audio(`audio/${digitName}.mp3`);
+          digitAudios[digit].volume = 1.0;
+        }
+
+        // Reset and play
+        digitAudios[digit].currentTime = 0;
+        digitAudios[digit]
+          .play()
+          .catch((e) => console.log(`Audio play failed for ${digitName}:`, e));
+      }
+
+      function playTone(frequency = 800, duration = 100) {
+        initAudio();
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = frequency;
+        oscillator.type = "sine";
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.01,
+          audioContext.currentTime + duration / 1000,
+        );
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + duration / 1000);
+      }
+
+      function playWinSound() {
+        const winAudio = new Audio("audio/win.mp3");
+        winAudio.volume = 1.0;
+        winAudio.play().catch((e) => console.log("Win audio play failed:", e));
+      }
+
+      function createUnicornFireworks() {
+        const girlEmojis = [
+          "🦄",
+          "✨",
+          "💖",
+          "🌟",
+          "💫",
+          "🌈",
+          "🎀",
+          "💕",
+          "🌸",
+          "🦋",
+          "💜",
+          "💙",
+          "🌺",
+          "🌻",
+          "🌼",
+          "🎊",
+          "🎉",
+          "💐",
+          "🌷",
+          "🌹",
+        ];
+        const boyEmojis = [
+          "🚚",
+          "🚗",
+          "🏎️",
+          "🚓",
+          "🚒",
+          "🚜",
+          "🏍️",
+          "⚡",
+          "🔧",
+          "🔩",
+          "⚙️",
+          "🛠️",
+          "🏁",
+          "🎯",
+          "⭐",
+          "💙",
+          "🚀",
+          "✈️",
+          "🚁",
+          "🛩️",
+        ];
+
+        const emojis = currentTheme === "boy" ? boyEmojis : girlEmojis;
+
+        for (let i = 0; i < 100; i++) {
+          setTimeout(() => {
+            const unicorn = document.createElement("div");
+            unicorn.className = "unicorn-firework";
+            unicorn.textContent =
+              emojis[Math.floor(Math.random() * emojis.length)];
+
+            // Random position
+            unicorn.style.left = Math.random() * window.innerWidth + "px";
+            unicorn.style.top = Math.random() * window.innerHeight + "px";
+
+            document.body.appendChild(unicorn);
+
+            // Remove after animation
+            setTimeout(() => {
+              if (unicorn.parentNode) {
+                unicorn.parentNode.removeChild(unicorn);
+              }
+            }, 1500);
+          }, i * 30);
+        }
+      }
+
+      function updateDisplay() {
+        for (let i = 0; i < codeLength; i++) {
+          const digitBox = document.getElementById(`digit-${i}`);
+          if (i < enteredDigits.length) {
+            digitBox.textContent = enteredDigits[i];
+
+            // Check if digit is correct
+            if (enteredDigits[i] === correctCode[i]) {
+              digitBox.classList.remove("incorrect");
+              digitBox.classList.add("correct");
+            } else {
+              digitBox.classList.remove("correct");
+              digitBox.classList.add("incorrect");
+            }
+          } else {
+            digitBox.textContent = "";
+            digitBox.classList.remove("correct", "incorrect");
+          }
+        }
+      }
+
+      function addDigit(digit) {
+        if (enteredDigits.length < codeLength) {
+          enteredDigits.push(digit);
+          updateDisplay();
+          playDigitSound(digit);
+        }
+      }
+
+      function deleteDigit() {
+        if (enteredDigits.length > 0) {
+          enteredDigits.pop();
+          updateDisplay();
+          playTone(500, 80); // Lower tone for delete
+        }
+      }
+
+      function clearAll() {
+        if (enteredDigits.length > 0) {
+          enteredDigits = [];
+          updateDisplay();
+          playTone(400, 150); // Even lower, longer tone for clear
+        }
+      }
+
+      function checkCode() {
+        if (
+          enteredDigits.length === codeLength &&
+          enteredDigits.join("") === correctCode
+        ) {
+          // All digits are correct - trigger unicorn fireworks!
+          createUnicornFireworks();
+          playWinSound();
+
+          setTimeout(() => {
+            enteredDigits = [];
+            updateDisplay();
+          }, 2000); // Wait a bit for win sound
+        } else if (enteredDigits.length === codeLength) {
+          // Wrong code - play error sound
+          playTone(300, 200);
+        }
+      }
+
+      // Initialize display
+      updateDisplay();
+
+      // Initialize audio on first user interaction (required for iOS)
+      document.addEventListener("click", initAudio, { once: true });
+      document.addEventListener("touchstart", initAudio, { once: true });
+
+      // Service Worker
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  </body>
+</html>

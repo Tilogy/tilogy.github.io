@@ -1,0 +1,19 @@
+{
+  "name": "Lunch Code",
+  "short_name": "Lunch Code",
+  "description": "Pink unicorn-themed secure lunch code entry system",
+  "start_url": "/lunch/",
+  "display": "standalone",
+  "background_color": "#ffc0cb",
+  "theme_color": "#ffc0cb",
+  "orientation": "portrait-primary",
+  "scope": "/lunch/",
+  "icons": [
+    {
+      "src": "/lunch/icon-40.png",
+      "sizes": "40x40",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
