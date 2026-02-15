@@ -1,10 +1,10 @@
-# Tilozign - Tiffany Sinakhot's Portfolio
+# Tilozign - Tilogy's Portfolio
 
-This is the personal portfolio website of Tiffany Sinakhot (Tilogy), showcasing her work and professional experience.
+This is the personal portfolio website of Tilogy, showcasing her work and professional experience.
 
 ## About
 
-Tilozign is a modern, responsive portfolio website built with Next.js and Tailwind CSS. The site features a clean, minimalist design that highlights Tiffany's professional work and skills.
+Tilozign is a modern, responsive portfolio website built with Next.js and Tailwind CSS. The site features a clean, minimalist design that highlights Tilogy's professional work and skills.
 
 ## Features
 
@@ -61,4 +61,4 @@ The site is configured for static export, making it easy to deploy to various pl
 
 ## Contact
 
-Connect with Tiffany on [LinkedIn](https://www.linkedin.com/in/tiffany-s-ebsx3/)
+Connect with Tilogy [Email](tilozign@gmail.com)
