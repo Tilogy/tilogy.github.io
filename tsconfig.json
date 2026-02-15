@@ -22,7 +22,7 @@
     "noEmit": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"
@@ -45,7 +45,9 @@
     ".eslintrc.cjs",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "docs/types/**/*.ts"
+    "docs/types/**/*.ts",
+    "docs/dev/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

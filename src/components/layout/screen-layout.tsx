@@ -34,9 +34,8 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
       <div className="flex w-full flex-row items-start justify-between p-12">
         <div className="text-2xl font-thin md:text-6xl">{topLeft}</div>
         <div className="flex items-center gap-x-4">
-          <EmailIcon /> {/* Add EmailIcon to the left of ThemeToggle */}
+          <EmailIcon />
           <ThemeToggle />
-          <LinkedInIcon />
         </div>
       </div>
       <div className="mx-12 font-light md:text-xl lg:text-2xl">{children}</div>

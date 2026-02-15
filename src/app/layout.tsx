@@ -6,7 +6,7 @@ import ThemeProvider from "@/app/theme-provider";
 
 export const metadata: Metadata = {
   title: "Tilozign",
-  description: "Tiffany Sinakhot's Creative Portfolio",
+  description: "Tilogy's Creative Portfolio",
   icons: [{ rel: "icon", url: "/favicon.svg" }],
 };
 
